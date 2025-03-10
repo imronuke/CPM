@@ -14,7 +14,7 @@
 #ifndef SOURCE_PUGIXML_CPP
 #define SOURCE_PUGIXML_CPP
 
-#include "include/pugixml.hpp"
+#include "pugixml.hpp"
 
 #include <assert.h>
 #include <limits.h>

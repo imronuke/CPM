@@ -1,12 +1,12 @@
-#include "include/outer.hpp"
+#include "outer.hpp"
 
 #include <algorithm>
 #include <cmath>
 #include <cstdio>
 #include <iterator>
 
-#include "include/cpm.hpp"
-#include "include/mesh.hpp"
+#include "cpm.hpp"
+#include "mesh.hpp"
 
 Outer::Outer() {
   group = new Group[Group::ng];

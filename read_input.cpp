@@ -1,4 +1,4 @@
-#include "include/read_input.hpp"
+#include "read_input.hpp"
 
 #include <algorithm>
 #include <cmath>
@@ -9,10 +9,10 @@
 #include <string>
 #include <tuple>
 
-#include "include/cpm.hpp"
-#include "include/mesh.hpp"
-#include "include/outer.hpp"
-#include "include/pugixml.hpp"
+#include "cpm.hpp"
+#include "mesh.hpp"
+#include "outer.hpp"
+#include "pugixml.hpp"
 
 // Function to trim whitespace from both ends of the string
 std::string trim(const std::string& str) {

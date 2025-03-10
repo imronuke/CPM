@@ -1,11 +1,11 @@
-#include "include/cpm.hpp"
+#include "cpm.hpp"
 
 #include <cmath>
 #include <cstdio>
 #include <iostream>
 #include <stdexcept>
 
-#include "include/mesh.hpp"
+#include "mesh.hpp"
 
 int Group::ng = 0;
 int Group::n_gauss = 0;

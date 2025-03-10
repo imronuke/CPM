@@ -7,10 +7,10 @@
 #include <string>
 #include <vector>
 
-#include "include/cpm.hpp"
-#include "include/mesh.hpp"
-#include "include/outer.hpp"
-#include "include/read_input.hpp"
+#include "cpm.hpp"
+#include "mesh.hpp"
+#include "outer.hpp"
+#include "read_input.hpp"
 
 // Get random number in range(a, b)
 // double get_random_number(const double a, const double b) {
