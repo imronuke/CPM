@@ -18,7 +18,7 @@ Here's a quick example of how to use the CPM solver:
 
 ```bash
 # Example command to run the solver
-./cpm example/test.xml
+./cpm example/test_1.xml
 ```
 
 ## Dependencies

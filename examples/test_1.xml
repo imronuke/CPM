@@ -1,0 +1,35 @@
+! See Figure 11 of Prof. Stammler's and Prof. Abbate's book
+
+<?xml version = '1.0' encoding = 'UTF-8'?>
+
+<cpm>
+
+<mode> fixed_source </mode>
+<data n_ring="3" n_gauss="1" ng="1" />
+
+<rings> 0.5       0.6      1.0 </rings>
+
+<xsec>
+! sigt
+1.0       0.5      2.0
+0.0       0.0      0.0
+0.1       0.4      1.9
+</xsec>
+
+<chi>
+0.0
+</chi>
+
+<src>
+0.1       0.0      1.0
+</src>
+
+<albedo>
+0.0
+</albedo>
+
+<j_ext>
+1.0
+</j_ext>
+
+</cpm>

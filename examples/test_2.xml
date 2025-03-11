@@ -1,3 +1,5 @@
+! See Figure 11 of Prof. Stammler's and Prof. Abbate's book
+
 <?xml version = '1.0' encoding = 'UTF-8'?>
 
 <cpm>
@@ -23,11 +25,11 @@
 </src>
 
 <albedo>
-0.0
+1.0
 </albedo>
 
 <j_ext>
-0.0
+-1.2097
 </j_ext>
 
 </cpm>
