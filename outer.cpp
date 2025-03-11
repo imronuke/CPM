@@ -8,14 +8,14 @@
 #include "cpm.hpp"
 #include "mesh.hpp"
 
-Outer::Outer() {
+Solver::Solver() {
   group = new Group[Group::ng];
 }
-Outer::~Outer() {
+Solver::~Solver() {
   delete[] group;
 }
 
-void Outer::calculate_fission_source() {
+void Solver::calculate_fission_source() {
   // Loop over the spatial cells (i) and energy groups (g)
   for (int i = 0; i < Mesh::n_ring; i++) {
     fission_src.mesh[i] = 0.0;
@@ -27,7 +27,7 @@ void Outer::calculate_fission_source() {
   }
 }
 
-double Outer::max_rel_error_fission() {
+double Solver::max_rel_error_fission() {
   // Purpose: To calculate Max Relative error
   double rel = 0.0;
   double error;
@@ -46,7 +46,7 @@ double Outer::max_rel_error_fission() {
 }
 
 // Get total source for group g
-void Outer::get_total_source(const int g) {
+void Solver::get_total_source(const int g) {
   double scat_src[Mesh::n_ring]{0.0};
 
   for (int i = 0; i < Mesh::n_ring; i++) {
@@ -64,7 +64,7 @@ void Outer::get_total_source(const int g) {
   }
 }
 
-double Outer::max_rel_error_flux() {
+double Solver::max_rel_error_flux() {
   // Purpose: To calculate Max Relative error for flux
   double rel = 0.0;
   double error;
@@ -91,7 +91,7 @@ double integrate(const double* s) {
   return result;
 }
 
-void Outer::display_results() {
+void Solver::display_results() {
   printf("\n");
   printf("  Number of group = %3d\n", Group::ng);
 
@@ -149,12 +149,12 @@ void Outer::display_results() {
   }
 }
 
-void Outer::get_removal(int g, int i, double& sigr, double& removal) {
+void Solver::get_removal(int g, int i, double& sigr, double& removal) {
   sigr = group[g].sigt.mesh[i] - group[g].sigs_in[g].mesh[i];
   removal = sigr * group[g].flux.mesh[i] * Mesh::volume[i];
 }
 
-void Outer::solve_fixed_source(bool print_outer) {
+void Solver::fixed_source(bool print_outer) {
   calculate_fission_source();
 
   for (int g = 0; g < Group::ng; g++) {
@@ -192,7 +192,7 @@ void Outer::solve_fixed_source(bool print_outer) {
   }
 }
 
-void Outer::solve_eigenvalue(bool print_outer) {
+void Solver::eigenvalue(bool print_outer) {
   calculate_fission_source();
 
   double fsrc = integrate(fission_src.mesh);

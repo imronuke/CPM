@@ -96,7 +96,7 @@ void read_problem_definition(int& n_ring, int& n_gauss, int& ng) {
   ng = std::stoi(head.child("data").attribute("ng").value());
 }
 
-void read_data(Outer& outer) {
+void read_data(Solver& outer) {
   const auto& head = doc.child("cpm");
 
   const int& n_ring = Mesh::n_ring;

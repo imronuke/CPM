@@ -79,17 +79,17 @@ int main(int argc, char* argv[]) {
 
   read_problem_definition(Mesh::n_ring, Group::n_gauss, Group::ng);
 
-  Outer outer;
+  Solver solver;
 
-  read_data(outer);
+  read_data(solver);
 
-  if (outer.problem == fixed_source) {
-    outer.solve_fixed_source(true);
+  if (solver.problem == fixed_source) {
+    solver.fixed_source(true);
   } else {
-    outer.solve_eigenvalue(true);
+    solver.eigenvalue(true);
   }
 
-  outer.display_results();
+  solver.display_results();
 
   // bool performance_test = false;
 

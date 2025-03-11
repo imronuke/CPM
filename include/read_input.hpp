@@ -8,6 +8,6 @@
 
 void open_xml(std ::string input_xml);
 void read_problem_definition(int& n_ring, int& n_gauss, int& ng);
-void read_data(Outer& outer);
+void read_data(Solver& outer);
 
 #endif

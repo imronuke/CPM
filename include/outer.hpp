@@ -6,10 +6,10 @@
 
 enum Problem { eigenvalue, fixed_source };
 
-class Outer {
+class Solver {
  public:
-  Outer();
-  ~Outer();
+  Solver();
+  ~Solver();
 
   Problem problem = fixed_source;
   double Ke = 1.0;
@@ -17,8 +17,8 @@ class Outer {
 
   static const int outer_max = 100;
 
-  void solve_fixed_source(bool print_iter);
-  void solve_eigenvalue(bool print_outer);
+  void fixed_source(bool print_iter);
+  void eigenvalue(bool print_outer);
   void display_results();
 
  private:
@@ -32,6 +32,6 @@ class Outer {
   void get_removal(int g, int i, double& sigr, double& removal);
 };
 
-extern Outer outer;
+extern Solver outer;
 
 #endif
