@@ -28,7 +28,7 @@ You just need g++ or other c++ compilers.
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the [MIT License](https://github.com/imronuke/CPM/blob/main/LICENSE).
 
 
 ## Acknowledgements
