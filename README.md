@@ -33,7 +33,7 @@ This project is licensed under the [MIT License](https://github.com/imronuke/CPM
 
 ## Acknowledgements
 
-This CPM code was converted from the Fortran version that I submitted for homework. Functions get_pij_annular (to calculate the PIJ matrix) and KI3 (to calculate the 3rd order Bickley-Naylor function) were provided in FORTRAN-77 as homework supplements. Pugixml to read the XML input file is from this [repository](https://github.com/zeux/pugixml).
+This CPM code was converted from the Fortran version that I submitted for homework. Functions ```get_pij_annular``` (to calculate the PIJ matrix) and ```KI3``` (to calculate the 3rd order Bickley-Naylor function) were provided in FORTRAN-77 as homework supplements. Pugixml to read the XML input file is from this [repository](https://github.com/zeux/pugixml).
 
 ---
 
