@@ -4,14 +4,14 @@
 #include "cpm.hpp"
 #include "mesh.hpp"
 
-enum Problem { eigenvalue, fixed_source };
+enum Problem { Eigenvalue, Fixed_source };
 
 class Solver {
  public:
   Solver();
   ~Solver();
 
-  Problem problem = fixed_source;
+  Problem problem = Fixed_source;
   double Ke = 1.0;
   Group* group;
 

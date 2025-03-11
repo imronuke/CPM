@@ -4,16 +4,16 @@ CXXFLAGS=-std=c++17 -O3 -Iinclude #-D_CHECK=1 #-Wall -D_GG=1
 LDFLAGS=${CXXFLAGS}
 
 # Executable target
-cpm: mesh.o pugixml.o read_input.o cpm.o outer.o main.o
+cpm: src/mesh.o src/pugixml.o src/read_input.o src/cpm.o src/outer.o src/main.o
 	${CXX} -o $@ ${LDFLAGS} $^
 
 # Object file targets
-mesh.o: mesh.cpp
-pugixml.o: pugixml.cpp
-read_input.o: read_input.cpp
-cpm.o: cpm.cpp
-outer.o: outer.cpp
-main.o: main.cpp
+src/mesh.o: src/mesh.cpp
+src/pugixml.o: src/pugixml.cpp
+src/read_input.o: src/read_input.cpp
+src/cpm.o: src/cpm.cpp
+src/outer.o: src/outer.cpp
+src/main.o: src/main.cpp
 
 # Suffixes and rule for compiling .cpp to .o
 .SUFFIXES: .o .cpp
@@ -22,4 +22,4 @@ main.o: main.cpp
 
 .PHONY: clean
 clean:
-	rm -f *.o *.a *.core # clean object files, static libraries, and core dumps
+	rm -f src/*.o *.a *.core # clean object files, static libraries, and core dumps

@@ -83,7 +83,7 @@ int main(int argc, char* argv[]) {
 
   read_data(solver);
 
-  if (solver.problem == fixed_source) {
+  if (solver.problem == Fixed_source) {
     solver.fixed_source(true);
   } else {
     solver.eigenvalue(true);

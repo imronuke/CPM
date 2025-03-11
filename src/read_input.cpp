@@ -106,9 +106,9 @@ void read_data(Solver& outer) {
   if (head.child("mode")) {
     const std::string mode = std_str(head.child_value("mode"));
     if (mode == "eigenvalue") {
-      outer.problem = eigenvalue;
+      outer.problem = Eigenvalue;
     } else if (mode == "fixed_source") {
-      outer.problem = fixed_source;
+      outer.problem = Fixed_source;
     } else {
       std::cerr << "Invalid input <mode>" << std::endl;
       throw std::runtime_error("Invalid input detected!");
@@ -172,7 +172,7 @@ void read_data(Solver& outer) {
     }
   }
 
-  if (outer.problem == fixed_source) {
+  if (outer.problem == Fixed_source) {
     auto [tmp, n_data] = string_to_vec(head.child_value("src"));
     if (n_data != ng * n_ring) {
       std::cerr << "Invalid number of data in <src>. Expected : " << ng * n_ring
@@ -205,7 +205,7 @@ void read_data(Solver& outer) {
         group[g].chi = tmp[g];
       }
 
-      if (std::abs(sum - 1.0) > 1.0e-5 && outer.problem == eigenvalue) {
+      if (std::abs(sum - 1.0) > 1.0e-5 && outer.problem == Eigenvalue) {
         std::cerr << "Sum of fission spectrum is equal to : " << sum
                   << ". It should be equal to one\n";
         throw std::runtime_error("Invalid input detected!");
@@ -228,7 +228,7 @@ void read_data(Solver& outer) {
 
   {
     auto [tmp, n_data] = string_to_vec(head.child_value("j_ext"));
-    if (outer.problem == eigenvalue) {
+    if (outer.problem == Eigenvalue) {
       if (n_data > 0) {
         std::cerr << "External current is not necessary for eigenvalue "
                      "problem";
