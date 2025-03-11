@@ -2,6 +2,8 @@
 
 Welcome to the **Collision Probability Method (CPM)** repository! This project features an integral neutron transport solver for circular geometry using the CPM technique. The method implemented in this solver is based on the COLPROB code, as detailed in the book by Prof. Stammler and Prof. Abbate.
 
+In this repo, the implementation is extended to multi-group and to solve the eigenvalue problem.
+
 ## Installation
 
 To get started with the CPM solver, clone the repository and follow the installation instructions:
