@@ -17,8 +17,7 @@ class Solver {
 
   static const int outer_max = 100;
 
-  void fixed_source(bool print_iter);
-  void eigenvalue(bool print_outer);
+  void solve(bool print_iter);
   void display_results();
 
  private:
@@ -30,6 +29,8 @@ class Solver {
   double max_rel_error_flux();
   void get_total_source(int g);
   void get_removal(int g, int i, double& sigr, double& removal);
+  void solve_fixed_source(bool print_iter);
+  void solve_eigenvalue(bool print_iter);
 };
 
 extern Solver outer;

@@ -1,5 +1,5 @@
 CXX=g++
-CXXFLAGS=-std=c++17 -O3 -Iinclude #-D_CHECK=1 #-Wall -D_GG=1
+CXXFLAGS=-std=c++17 -O3 -Iinclude #-D_PERFORMANCE_TEST #-D_CHECK=1 #-Wall -D_GG=1
 # CXXFLAGS=-std=c++17 -Wall -O0 -Iinclude -rdynamic -fno-omit-frame-pointer -g -fsanitize=address -fsanitize=bounds -fsanitize=undefined -D_CHECK=1 #-Wall -D_GG=1
 LDFLAGS=${CXXFLAGS}
 

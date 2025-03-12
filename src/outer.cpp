@@ -154,14 +154,14 @@ void Solver::get_removal(int g, int i, double& sigr, double& removal) {
   removal = sigr * group[g].flux.mesh[i] * Mesh::volume[i];
 }
 
-void Solver::fixed_source(bool print_outer) {
+void Solver::solve_fixed_source(bool print_iter) {
   calculate_fission_source();
 
   for (int g = 0; g < Group::ng; g++) {
     group[g].get_response_matrix();
   }
 
-  if (print_outer) {
+  if (print_iter) {
     printf("     ==== OUTER ITERATION ====\n");
     printf("#iter    Fission error   Flux Error\n");
   }
@@ -183,7 +183,7 @@ void Solver::fixed_source(bool print_outer) {
     double flux_error = max_rel_error_flux();
     double fsrc_error = max_rel_error_fission();
 
-    if (print_outer) {
+    if (print_iter) {
       printf("%3d      %-11.5e     %-11.5e\n", k, fsrc_error, flux_error);
     }
 
@@ -192,7 +192,7 @@ void Solver::fixed_source(bool print_outer) {
   }
 }
 
-void Solver::eigenvalue(bool print_outer) {
+void Solver::solve_eigenvalue(bool print_iter) {
   calculate_fission_source();
 
   double fsrc = integrate(fission_src.mesh);
@@ -201,7 +201,7 @@ void Solver::eigenvalue(bool print_outer) {
     group[g].get_response_matrix();
   }
 
-  if (print_outer) {
+  if (print_iter) {
     printf("     ==== OUTER ITERATION ====\n");
     printf("#iter    Eigenvalue   Fission error   Flux Error\n");
   }
@@ -228,12 +228,20 @@ void Solver::eigenvalue(bool print_outer) {
     double flux_error = max_rel_error_flux();
     double fsrc_error = max_rel_error_fission();
 
-    if (print_outer) {
+    if (print_iter) {
       printf("%3d      %-10.6f  %-11.5e     %-11.5e\n", k, Ke, fsrc_error,
              flux_error);
     }
 
     if (flux_error < 1.e-5 && fsrc_error < 1.e-5)
       break;
+  }
+}
+
+void Solver::solve(bool print_iter) {
+  if (problem == Fixed_source) {
+    solve_fixed_source(print_iter);
+  } else {
+    solve_eigenvalue(print_iter);
   }
 }

@@ -71,7 +71,10 @@
         "thread": "cpp",
         "cfenv": "cpp",
         "typeindex": "cpp",
-        "variant": "cpp"
+        "variant": "cpp",
+        "charconv": "cpp",
+        "format": "cpp",
+        "span": "cpp"
     },
     "clang-format.executable": "/usr/bin/clang-format"
 }

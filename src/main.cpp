@@ -12,20 +12,22 @@
 #include "outer.hpp"
 #include "read_input.hpp"
 
+#ifdef _PERFORMANCE_TEST
 // Get random number in range(a, b)
-// double get_random_number(const double a, const double b) {
-//     // Seed the random number generator with the current time
-//     std::random_device rd;
-//     std::mt19937 gen(rd());
+double get_random_number(const double a, const double b) {
+  // Seed the random number generator with the current time
+  std::random_device rd;
+  std::mt19937 gen(rd());
 
-//     // Define a uniform real distribution between 0 and 1
-//     std::uniform_real_distribution<> dist(0.0, 1.0);
+  // Define a uniform real distribution between 0 and 1
+  std::uniform_real_distribution<> dist(0.0, 1.0);
 
-//     // Generate and print 10 random floating-point numbers between 0 and 1
-//     double random_number = dist(gen);
+  // Generate and print 10 random floating-point numbers between 0 and 1
+  double random_number = dist(gen);
 
-//     return (b - a) * random_number + a;
-// }
+  return (b - a) * random_number + a;
+}
+#endif
 
 void remove_comments(const std::string& filename, char* tempFilename) {
   std::ifstream input(filename);
@@ -48,10 +50,6 @@ void remove_comments(const std::string& filename, char* tempFilename) {
   input.close();
 
   std::ofstream tempFile(tempFilename);
-  if (!tempFile) {
-    std::cerr << "Error: Unable to create temporary file!" << std::endl;
-    throw std::runtime_error("Unable to create temporary file!");
-  }
 
   // Write modified content to the temporary file
   for (const auto& line : initstr) {
@@ -69,7 +67,6 @@ int main(int argc, char* argv[]) {
 
   // Create a temporary file where ! mark is removed
   char tempFilename[L_tmpnam];  // Buffer to store temp filename
-
   std::string filename = argv[1];
   remove_comments(filename, tempFilename);
 
@@ -82,50 +79,41 @@ int main(int argc, char* argv[]) {
   Solver solver;
 
   read_data(solver);
-
-  if (solver.problem == Fixed_source) {
-    solver.fixed_source(true);
-  } else {
-    solver.eigenvalue(true);
-  }
-
+  solver.solve(true);
   solver.display_results();
 
-  // bool performance_test = false;
+#ifdef _PERFORMANCE_TEST
 
-  // if (performance_test) {
-  //     constexpr int n_calc = 10000;
-  //     constexpr int n_print = 1000;
-  //     auto sigt = outer.group[0].sigt;
+  constexpr int n_calc = 10000;
+  constexpr int n_print = 1000;
+  auto sigt = solver.group[0].sigt;
 
-  //     printf("\n");
-  //     printf("  === PERFORMANCE TEST === \n");
+  printf("\n");
+  printf("  === PERFORMANCE TEST === \n");
 
-  //     auto start = std::chrono::high_resolution_clock::now();
+  auto start = std::chrono::high_resolution_clock::now();
 
-  //     int p = 0;
-  //     for (int k = 1; k <= n_calc; ++k) {
-  //         auto rx = get_random_number(-0.01, 0.01);
+  int p = 0;
+  for (int k = 1; k <= n_calc; ++k) {
+    auto rx = get_random_number(-0.01, 0.01);
 
-  //         for (int i = 0; i < Mesh::n_ring; ++i) {
-  //             outer.group[0].sigt.mesh[i] = sigt.mesh[i] + rx *
-  //             sigt.mesh[i];
-  //         }
+    for (int i = 0; i < Mesh::n_ring; ++i) {
+      solver.group[0].sigt.mesh[i] = sigt.mesh[i] + rx * sigt.mesh[i];
+    }
 
-  //         for (int g = 0; g < Group::ng; ++g) {
-  //             outer.group[g].solve_collision_probability();
-  //         }
+    solver.solve(false);
 
-  //         if (k % n_print == 0) {
-  //             p += n_print;
-  //             printf("  Now is reaching %7d calculations\n", p);
-  //         }
-  //     }
+    if (k % n_print == 0) {
+      p += n_print;
+      printf("  Now is reaching %7d calculations\n", p);
+    }
+  }
 
-  //     auto end = std::chrono::high_resolution_clock::now();
-  //     std::chrono::duration<double> duration = end - start;
-  //     std::cout << "Elapsed time: " << duration.count() << " seconds\n";
-  // }
+  auto end = std::chrono::high_resolution_clock::now();
+  std::chrono::duration<double> duration = end - start;
+  std::cout << "Elapsed time: " << duration.count() << " seconds\n";
+
+#endif
 
   remove(tempFilename);
 }
