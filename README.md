@@ -27,9 +27,9 @@ Here's a quick example of how to use the CPM solver:
 
 You just need g++ or other c++ compilers.
 
-## Validation:
-Here is the result for a simple fuel-moderator problem with white boundary condition.
-My code gives k_inf = 1.30288
+## Validation
+Here is the result for a simple fuel-moderator problem with white boundary condition.\
+My code gives k_inf = 1.30288\
 Multi-group Monte Carlo using OpenMC gives k_inf = 1.30323 ± 0.00025.
 
 
